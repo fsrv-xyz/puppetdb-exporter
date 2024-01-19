@@ -20,7 +20,7 @@ import (
 	"gopkg.in/yaml.v3"
 )
 
-//  START MODELS AND VARIABLES
+// START MODELS AND VARIABLES
 var (
 	addr = flag.String("listen-address", ":8156", "The address to listen on for HTTP requests.")
 	conf = flag.String("conf", "puppetdb-facts.yaml", "The path to the config file.")
@@ -110,7 +110,7 @@ type NodeStatusEntry struct {
 
 //  END MODELS AND VARIABLES
 
-//  START GUAGES
+// START GUAGES
 var bundleGuages map[string]*prometheus.GaugeVec
 
 var puppetDBGuage = prometheus.NewGauge(
@@ -1282,6 +1282,7 @@ func init() {
 
 	prometheus.MustRegister(masterState)
 
+	log.Default().SetFlags(log.LstdFlags | log.Lshortfile)
 }
 
 func initFactBundleMetrics(c Conf) {
